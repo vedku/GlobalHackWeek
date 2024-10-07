@@ -1,5 +1,5 @@
 import whisper
 
 model = whisper.load_model("turbo")
-result = model.transcribe("/Users/vedk/Desktop/audiotobeused.m4a")
+result = model.transcribe("audiofilepath")
 print(result["text"])
