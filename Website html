@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <h1>Speech To Text Transcriber</h1>
+        <h1>SPEECH TO TEXT TRANSCRIBER</h1>
     </header>
 
     <nav>
@@ -25,6 +25,7 @@
             <li><a href="#Redirect">Redirect</a></li>
         </ul>
     </nav>
+
     <div id="main">
 
             <div id="panel-left" class="">
@@ -172,12 +173,6 @@
                         </svg>
                     </div>
                 </div>
-                <div id="commands-list"></div>
-                <a href="#suggest-an-update" id="found-mistake" class="hidden" title="After you have made all the changes to your list,
-click on the 'Export' button located above the list.
-Then, send us your file as an attachment via email.">
-                    Found a mistake or have a suggestion? [↓]
-                </a>
             </div>
 
 
@@ -236,15 +231,23 @@ CTRL + Y"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 
         </div>
 
     <main>
+        <section id="Transcriber">
+            <h2>Try the transcriber here!</h2>
+            <p>Use the microphone to record your beautiful voice.
+                The buttons on the side can help customise and personalise your experience </p>
+        </section>
+
         <section id="Description">
             <h2>Brief description</h2>
-            <p> Using open source code, we have implemented speech to text by integrating whisper AI
-                with our knowledge as indian fatties!!!!.</p>
+            <p> Using the open source code from whisper AI,
+                we have implemented speech to text with our knowledge and skills
+                as students! We hope that this platform can be utilised by those
+                who can benefit from this program.</p>
         </section>
 
         <section id="services">
             <h2>Our Services</h2>
-            <p> Backshots. Talk Tuah honest reviews. Indian street food.</p>
+            <p>Speech to text transcribing.</p>
         </section>
 
         <section id="contact">
@@ -267,6 +270,3 @@ CTRL + Y"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 
     </footer>
 </body>
 </html>
-
-
-
