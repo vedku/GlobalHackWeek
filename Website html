@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Speech To Text Translator!! yay!!!</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#Description">Description</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#Redirect">Redirect</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="Description">
+            <h2>Brief description</h2>
+            <p> Using open source code, we have implemented speech to text by integrating whisper AI
+                with our knowledge as indian fatties!!!!.</p>
+        </section>
+
+        <section id="services">
+            <h2>Our Services</h2>
+            <p> Backshots. Talk Tuah honest reviews. Indian street food.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>@rayhaejoonkang.</p>
+        </section>
+
+        <section id="Redirect">
+            <h3>Redirect to google</h3>
+            <head>
+                <title>Redirecting to Another page</title>
+                <a href="https://www.google.com">Click here to go to GOOGLE</a>
+            </head>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SpeechToText Translator </p>
+    </footer>
+</body>
+</html>
+
+
+
