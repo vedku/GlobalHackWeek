@@ -78,6 +78,20 @@ h1, h2 {
     background-color: #9cf1a0;
 }
 
+#languageSelect {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#languageSelect:hover {
+    background-color: #9cf1a0;
+}
+
 #microphoneButton {
     display: flex;
     align-items: center;
@@ -109,6 +123,17 @@ h1, h2 {
     border-color: #9cf1a0;
 }
 
+.mobile-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.mobile-info ul {
+    padding-left: 1.5rem;
+}
+
 #description {
     background-color: #ffffff;
     padding: 2rem;
@@ -130,4 +155,19 @@ footer img {
     max-width: 100px;
     height: auto;
     margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .container, #description {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn, #languageSelect {
+        width: 100%;
+    }
 }

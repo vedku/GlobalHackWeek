@@ -12,66 +12,77 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeSpeechRecognition() {
         if ('webkitSpeechRecognition' in window) {
             recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.lang = languageSelect.value;
-
-            recognition.onresult = (event) => {
-                let interimTranscript = '';
-
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript;
-                    } else {
-                        interimTranscript += event.results[i][0].transcript;
-                    }
-                }
-
-                // Post-process text based on selected language
-                if (languageSelect.value === 'ko-KR') {
-                    finalTranscript = postProcessKorean(finalTranscript);
-                    interimTranscript = postProcessKorean(interimTranscript);
-                } else if (languageSelect.value === 'ms-MY') {
-                    finalTranscript = postProcessMalay(finalTranscript);
-                    interimTranscript = postProcessMalay(interimTranscript);
-                }
-
-                output.innerHTML = finalTranscript + '<span style="color: #999;">' + interimTranscript + '</span>';
-                updateWordCount();
-            };
-
-            recognition.onend = () => {
-                if (isListening) {
-                    recognition.start();
-                }
-            };
-
-            recognition.onerror = (event) => {
-                console.error('Speech recognition error:', event.error);
-                if (event.error === 'no-speech') {
-                    console.log('No speech detected. Restarting recognition.');
-                    recognition.stop();
-                    recognition.start();
-                }
-            };
-
-            microphoneButton.addEventListener('click', toggleSpeechRecognition);
-            redoButton.addEventListener('click', redoSpeech);
-            languageSelect.addEventListener('change', () => {
-                if (isListening) {
-                    toggleSpeechRecognition();
-                }
-                recognition.lang = languageSelect.value;
-                finalTranscript = '';
-                output.innerHTML = '';
-                updateWordCount();
-            });
+        } else if ('SpeechRecognition' in window) {
+            recognition = new SpeechRecognition();
         } else {
             microphoneButton.style.display = 'none';
             redoButton.style.display = 'none';
             languageSelect.style.display = 'none';
-            output.innerHTML = 'Web Speech API is not supported in this browser.';
+            output.innerHTML = 'Web Speech API is not supported in this browser. Please try using Google Chrome on a desktop computer.';
+            return;
         }
+
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = languageSelect.value;
+
+        recognition.onstart = () => {
+            console.log('Speech recognition started');
+        };
+
+        recognition.onresult = (event) => {
+            let interimTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
+            }
+
+            // Post-process text based on selected language
+            if (languageSelect.value === 'ko-KR') {
+                finalTranscript = postProcessKorean(finalTranscript);
+                interimTranscript = postProcessKorean(interimTranscript);
+            } else if (languageSelect.value === 'ms-MY') {
+                finalTranscript = postProcessMalay(finalTranscript);
+                interimTranscript = postProcessMalay(interimTranscript);
+            }
+
+            output.innerHTML = finalTranscript + '<span style="color: #999;">' + interimTranscript + '</span>';
+            updateWordCount();
+        };
+
+        recognition.onend = () => {
+            console.log('Speech recognition ended');
+            if (isListening) {
+                recognition.start();
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            if (event.error === 'not-allowed') {
+                output.innerHTML = 'Microphone access denied. Please ensure you have given permission to use the microphone.';
+            } else if (event.error === 'no-speech') {
+                console.log('No speech detected. Restarting recognition.');
+                recognition.stop();
+                recognition.start();
+            }
+        };
+
+        microphoneButton.addEventListener('click', toggleSpeechRecognition);
+        redoButton.addEventListener('click', redoSpeech);
+        languageSelect.addEventListener('change', () => {
+            if (isListening) {
+                toggleSpeechRecognition();
+            }
+            recognition.lang = languageSelect.value;
+            finalTranscript = '';
+            output.innerHTML = '';
+            updateWordCount();
+        });
     }
 
     function toggleSpeechRecognition() {
