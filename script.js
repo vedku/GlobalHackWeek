@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function postProcessKorean(text) {
         // Korean-specific post-processing
-        text = text.replace(/(\S)(\s+)(?=\S)/g, '$1'); // Remove unnecessary spaces between Korean characters
         text = text.replace(/([가-힣])([a-zA-Z])/g, '$1 $2'); // Add space between Korean and English characters
         text = text.replace(/([a-zA-Z])([가-힣])/g, '$1 $2'); // Add space between English and Korean characters
         return text;
